@@ -1,0 +1,1554 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpaceCare | Health Monitoring</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">
+                <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+
+            <div>
+                <h2>SpaceCare</h2>
+                <span>CREW HEALTH SYSTEM</span>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <p class="section-title">MISSION HEALTH</p>
+
+            <a href="#overview" class="menu-link active">
+                <i class="fa-solid fa-grip"></i>
+                <span>Overview</span>
+            </a>
+
+            <a href="#daily-check" class="menu-link">
+                <i class="fa-regular fa-clipboard"></i>
+                <span>Daily Health Check</span>
+            </a>
+
+            <a href="#analytics" class="menu-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Health Analytics</span>
+            </a>
+
+            <a href="#body-map" class="menu-link">
+                <i class="fa-solid fa-person"></i>
+                <span>Human Body Map</span>
+            </a>
+
+            <a href="#alerts" class="menu-link">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span>Alerts & Actions</span>
+                <span class="notification-count">1</span>
+            </a>
+
+            <a href="#wellness" class="menu-link">
+                <i class="fa-solid fa-moon"></i>
+                <span>Sleep & Mental Wellness</span>
+            </a>
+        </div>
+
+        <div class="menu-section">
+            <p class="section-title">RESOURCES & SYSTEM</p>
+
+            <a href="#guide" class="menu-link">
+                <i class="fa-regular fa-book-open"></i>
+                <span>Space Health Guide</span>
+            </a>
+
+            <a href="#routine" class="menu-link">
+                <i class="fa-regular fa-clock"></i>
+                <span>Mission Routine</span>
+            </a>
+
+            <a href="#settings" class="menu-link">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </div>
+
+        <div class="sidebar-bottom">
+            <div class="crew-card">
+                <div class="avatar">LE</div>
+                <div>
+                    <h4>Lunar Exploration</h4>
+                    <p>Mission Day 084</p>
+                </div>
+            </div>
+
+            <p class="demo-label">
+                <i class="fa-solid fa-shield-halved"></i>
+                DEMONSTRATION ONLY
+            </p>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content" id="appMain">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div class="breadcrumb">
+                SpaceCare <i class="fa-solid fa-chevron-right"></i> Overview
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="sync-status">
+                    <i class="fa-solid fa-wifi"></i>
+                    <div>
+                        <strong>Data synchronized</strong>
+                        <small>Simulated · Just now</small>
+                    </div>
+                </div>
+
+                <button class="icon-button" id="notificationBtn">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="bell-dot"></span>
+                </button>
+
+                <div class="profile">
+                    <div class="profile-avatar">EC</div>
+                    <div>
+                        <strong>Elena Cruz</strong>
+                        <small>Commander</small>
+                    </div>
+                </div>
+
+                <button class="mobile-menu" id="mobileMenu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+            </div>
+        </header>
+
+        <!-- OVERVIEW PAGE -->
+        <section class="page-section active" id="overview">
+
+        <!-- WELCOME SECTION -->
+        <section class="welcome-section">
+
+            <div>
+                <span class="eyebrow">MISSION DAY 084 · SPACECRAFT</span>
+
+                <h1>Welcome back, Commander.</h1>
+
+                <p>Here's your health briefing for Tuesday, 18 June. All values shown are simulated demo data.</p>
+            </div>
+
+            <button class="primary-button" id="startCheck" type="button">
+                <i class="fa-regular fa-clipboard"></i>
+                Start Daily Check
+            </button>
+
+        </section>
+
+
+        <!-- DEMO BANNER -->
+        <div class="demo-banner">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+            <span>
+                <strong>Demo environment.</strong>
+                Sample readings are fictional and not connected to medical sensors.
+            </span>
+
+            <button id="closeBanner">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+
+        <!-- HEALTH CARDS -->
+        <section class="health-cards">
+
+            <div class="health-card">
+                <div class="card-top">
+                    <div class="metric-icon green">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <span class="status recorded">● Recorded</span>
+                </div>
+
+                <p>Heart Rate</p>
+                <h2>72 <small>bpm</small></h2>
+                <div class="card-footer">
+                    <span>Today, 07:42</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+
+
+            <div class="health-card">
+                <div class="card-top">
+                    <div class="metric-icon cyan">
+                        <i class="fa-solid fa-wave-square"></i>
+                    </div>
+                    <span class="status recorded">● Recorded</span>
+                </div>
+
+                <p>Blood Pressure</p>
+                <h2>118/76 <small>mmHg</small></h2>
+                <div class="card-footer">
+                    <span>Today, 07:44</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+
+
+            <div class="health-card">
+                <div class="card-top">
+                    <div class="metric-icon green">
+                        <i class="fa-solid fa-temperature-half"></i>
+                    </div>
+                    <span class="status recorded">● Recorded</span>
+                </div>
+
+                <p>Body Temperature</p>
+                <h2>36.8 <small>°C</small></h2>
+                <div class="card-footer">
+                    <span>Today, 07:47</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+
+
+            <div class="health-card">
+                <div class="card-top">
+                    <div class="metric-icon orange">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <span class="status review">● Review</span>
+                </div>
+
+                <p>Blood Glucose</p>
+                <h2>Not recorded</h2>
+                <div class="card-footer">
+                    <span>Not scheduled today</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+
+
+            <div class="health-card">
+                <div class="card-top">
+                    <div class="metric-icon purple">
+                        <i class="fa-solid fa-moon"></i>
+                    </div>
+                    <span class="status logged">● Logged</span>
+                </div>
+
+                <p>Sleep Duration</p>
+                <h2>7.4 <small>hours</small></h2>
+                <div class="card-footer">
+                    <span>Last 24 hours</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+
+
+            <div class="health-card">
+                <div class="card-top">
+                    <div class="metric-icon blue">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <span class="status logged">● Logged</span>
+                </div>
+
+                <p>Mood</p>
+                <h2>Steady</h2>
+                <div class="card-footer">
+                    <span>Check-in at 08:02</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- ANALYTICS SECTION -->
+        <section class="analytics-grid">
+
+            <!-- HEALTH STATUS -->
+            <div class="panel health-overview" id="overview-health-status">
+
+                <div class="panel-heading">
+                    <div>
+                        <h3>Health status overview</h3>
+                        <p>Today's self-assessment</p>
+                    </div>
+
+                    <span class="status review">● In progress</span>
+                </div>
+
+                <div class="progress-content">
+
+                    <div class="progress-circle">
+                        <div class="progress-inner">
+                            <strong id="progressValue">68%</strong>
+                        </div>
+                    </div>
+
+                    <div class="progress-text">
+                        <h4>Complete today's check</h4>
+                        <p>Two of three sections are ready for review.</p>
+                        <a href="#routine">Continue assessment <i class="fa-solid fa-chevron-right"></i></a>
+                    </div>
+
+                </div>
+
+                <div class="overview-stat">
+                    <span><i class="fa-regular fa-circle-check"></i> Core measurements</span>
+                    <strong>4 of 5</strong>
+                </div>
+
+                <div class="overview-stat">
+                    <span><i class="fa-solid fa-triangle-exclamation"></i> Simulated alerts</span>
+                    <strong>1 to review</strong>
+                </div>
+
+            </div>
+
+
+            <!-- HEALTH TRENDS -->
+            <div class="panel trends-panel" id="overview-trends">
+
+                <div class="panel-heading">
+                    <div>
+                        <h3>Health trends</h3>
+                        <p>Simulated seven-day view</p>
+                    </div>
+
+                    <a href="#analytics">View analytics <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+
+                <div class="chart-tabs">
+                    <button class="chart-tab active" data-chart="heart">Heart Rate</button>
+                    <button class="chart-tab" data-chart="sleep">Sleep</button>
+                    <button class="chart-tab" data-chart="temperature">Temperature</button>
+                </div>
+
+                <div class="chart-info">
+                    <strong id="chartValue">72</strong>
+                    <span id="chartUnit">bpm · latest</span>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="healthChart"></canvas>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BOTTOM SECTION -->
+        <section class="bottom-grid">
+
+            <!-- DAILY ROUTINE -->
+            <div class="panel routine-panel" id="overview-routine">
+
+                <div class="panel-heading">
+                    <div>
+                        <h3>Today's routine</h3>
+                        <p><span id="taskCount">3</span> of 5 tasks complete</p>
+                    </div>
+
+                    <a href="#routine">View routine <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+
+                <div class="routine-list">
+
+                    <label class="routine-item completed">
+                        <input type="checkbox" checked>
+                        <span class="custom-check"><i class="fa-solid fa-check"></i></span>
+                        <div>
+                            <strong>Morning measurements</strong>
+                            <small>Completed · 07:30</small>
+                        </div>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </label>
+
+                    <label class="routine-item completed">
+                        <input type="checkbox" checked>
+                        <span class="custom-check"><i class="fa-solid fa-check"></i></span>
+                        <div>
+                            <strong>Resistance exercise</strong>
+                            <small>Completed · 10:00</small>
+                        </div>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </label>
+
+                    <label class="routine-item completed">
+                        <input type="checkbox" checked>
+                        <span class="custom-check"><i class="fa-solid fa-check"></i></span>
+                        <div>
+                            <strong>Hydration check</strong>
+                            <small>Completed · 11:30</small>
+                        </div>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </label>
+
+                    <label class="routine-item">
+                        <input type="checkbox">
+                        <span class="custom-check"><i class="fa-solid fa-check"></i></span>
+                        <div>
+                            <strong>Afternoon check-in</strong>
+                            <small>Scheduled · 14:00</small>
+                        </div>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </label>
+
+                    <label class="routine-item">
+                        <input type="checkbox">
+                        <span class="custom-check"><i class="fa-solid fa-check"></i></span>
+                        <div>
+                            <strong>Evening wellness review</strong>
+                            <small>Scheduled · 20:00</small>
+                        </div>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUICK ACTIONS -->
+            <div class="panel quick-panel">
+
+                <div class="panel-heading">
+                    <div>
+                        <h3>Quick actions</h3>
+                        <p>Common crew health tasks</p>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+
+                    <button class="action-button" data-action="measurement">
+                        <span><i class="fa-solid fa-plus"></i></span>
+                        Record a measurement
+                    </button>
+
+                    <button class="action-button" data-action="check">
+                        <span><i class="fa-regular fa-clipboard"></i></span>
+                        Complete health check
+                    </button>
+
+                    <button class="action-button" data-action="alerts">
+                        <span><i class="fa-solid fa-triangle-exclamation"></i></span>
+                        Review alerts
+                    </button>
+
+                    <button class="action-button" data-action="body">
+                        <span><i class="fa-solid fa-person"></i></span>
+                        Explore body map
+                    </button>
+
+                </div>
+
+                <div class="quick-note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    All actions use simulated demonstration data.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <span>© 2026 SpaceCare · Crew Health System</span>
+            <span>Demo Version 1.0</span>
+        </footer>
+
+        </section>
+
+<!-- </div> -->
+
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+
+    <div class="modal">
+
+        <button class="modal-close" id="modalClose">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-icon">
+            <i class="fa-solid fa-heart-pulse"></i>
+        </div>
+
+        <h2 id="modalTitle">Record a measurement</h2>
+        <p id="modalDescription">Enter your simulated measurement below.</p>
+
+        <form id="measurementForm">
+
+            <div class="form-group">
+                <label for="measurementType">Measurement type</label>
+
+                <select id="measurementType">
+                    <option value="Heart Rate">Heart Rate</option>
+                    <option value="Blood Pressure">Blood Pressure</option>
+                    <option value="Temperature">Temperature</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="measurementValue">Value</label>
+                <input type="text" id="measurementValue"
+                placeholder="Enter a demo value" required>
+            </div>
+
+            <button type="submit" class="primary-button submit-button">
+                Save Measurement
+            </button>
+
+        </form>
+
+        <div class="modal-message" id="modalMessage"></div>
+
+    </div>
+
+</div>
+
+<!-- DAILY HEALTH CHECK PAGE CONTENT -->
+<section class="page-section" id="daily-check">
+
+    <!-- PAGE HEADER & SAVE BUTTON -->
+    <div class="health-check-container">
+        <div class="health-check-title-area">
+            <a href="#overview" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to overview</a>
+            <span class="sub-category-tag">DAILY HEALTH CHECK</span>
+            <h1>Record basic measurements</h1>
+            <p>Your entries stay in this demo until you review and save them.</p>
+        </div>
+
+        <button class="save-progress-btn">
+            <i class="fa-regular fa-floppy-disk"></i> Save progress
+        </button>
+    </div>
+
+    <!-- STEPS PROGRESS BAR -->
+    <div class="steps-indicator">
+        <div class="step-item active">
+            <div class="step-number">1</div>
+            <div class="step-text">
+                <span class="step-label">STEP 1</span>
+                <span class="step-name">Basic measurements</span>
+            </div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-item">
+            <div class="step-number">2</div>
+            <div class="step-text">
+                <span class="step-label">STEP 2</span>
+                <span class="step-name">Sleep & mood</span>
+            </div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step-item">
+            <div class="step-number">3</div>
+            <div class="step-text">
+                <span class="step-label">STEP 3</span>
+                <span class="step-name">Review</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- FORM & GUIDANCE GRID -->
+    <div class="check-content-grid">
+        
+        <!-- MEASUREMENTS FORM -->
+        <div class="measurements-form-card">
+            <div class="card-section-title">
+                <h3>Core measurements</h3>
+                <p>Required unless marked unavailable or not scheduled.</p>
+            </div>
+
+            <div class="time-badge">
+                <i class="fa-regular fa-clock"></i> Measurement time: <span>Today, 08:10</span>
+            </div>
+
+            <!-- Row 1: Heart Rate & Body Temperature -->
+            <div class="form-row">
+                <div class="input-group">
+                    <label>Heart rate</label>
+                    <div class="input-with-unit">
+                        <input type="text" placeholder="e.g. 72">
+                        <span class="unit">bpm</span>
+                    </div>
+                    <span class="error-text"><i class="fa-solid fa-triangle-exclamation"></i> Heart rate is required.</span>
+                </div>
+
+                <div class="input-group">
+                    <label>Body temperature</label>
+                    <div class="input-with-unit">
+                        <input type="text" placeholder="e.g. 36.8">
+                        <span class="unit">°C</span>
+                    </div>
+                    <span class="error-text"><i class="fa-solid fa-triangle-exclamation"></i> Temperature is required.</span>
+                </div>
+            </div>
+
+            <!-- Row 2: Systolic & Diastolic Pressure -->
+            <div class="form-row">
+                <div class="input-group">
+                    <label>Systolic pressure</label>
+                    <div class="input-with-unit">
+                        <input type="text" placeholder="e.g. 118">
+                        <span class="unit">mmHg</span>
+                    </div>
+                    <span class="error-text"><i class="fa-solid fa-triangle-exclamation"></i> Systolic pressure is required.</span>
+                </div>
+
+                <div class="input-group">
+                    <label>Diastolic pressure</label>
+                    <div class="input-with-unit">
+                        <input type="text" placeholder="e.g. 76">
+                        <span class="unit">mmHg</span>
+                    </div>
+                    <span class="error-text"><i class="fa-solid fa-triangle-exclamation"></i> Diastolic pressure is required.</span>
+                </div>
+            </div>
+
+            <!-- Row 3: Blood Glucose -->
+            <div class="form-row single-col">
+                <div class="input-group">
+                    <label>Blood glucose</label>
+                    <div class="input-with-unit">
+                        <input type="text" placeholder="e.g. 92">
+                        <span class="unit">mg/dL</span>
+                    </div>
+                    <span class="error-text"><i class="fa-solid fa-triangle-exclamation"></i> Glucose is required.</span>
+                    <label class="checkbox-label">
+                        <input type="checkbox"> Not measured or not scheduled
+                    </label>
+                </div>
+            </div>
+
+            <!-- Row 4: Measurement Notes -->
+            <div class="form-row single-col">
+                <div class="input-group">
+                    <label>Measurement notes <span class="optional">Optional</span></label>
+                    <textarea placeholder="Add device, context, or anything the medical team should know."></textarea>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button class="btn-cancel">Cancel</button>
+                <button class="btn-continue">Continue <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+        <!-- GUIDANCE CARD -->
+        <div class="guidance-card">
+            <div class="guidance-header">
+                <i class="fa-solid fa-user-doctor"></i>
+                <h3>Measurement guidance</h3>
+            </div>
+            <p>Rest for a few minutes and follow the instructions for the equipment available on your mission.</p>
+            <a href="#" class="guidance-link">How to measure safely <i class="fa-solid fa-chevron-right"></i></a>
+
+            <div class="protocol-box">
+                <span class="protocol-title">FOLLOW MISSION PROTOCOL</span>
+                <p>For urgent symptoms, stop this assessment and contact the appropriate flight medical team using the established mission procedure.</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<!-- HEALTH ANALYTICS PAGE CONTENT -->
+<section class="page-section" id="analytics">
+
+    <!-- PAGE HEADER & ACTION BUTTON -->
+    <div class="analytics-header-area">
+        <div class="analytics-title-area">
+            <span class="sub-category-tag">HEALTH ANALYTICS</span>
+            <h1>Measurement history</h1>
+            <p>Explore simulated entries, source information, and personal trends.</p>
+        </div>
+
+        <button class="record-new-btn">
+            <i class="fa-solid fa-plus"></i> Record New Measurement
+        </button>
+    </div>
+
+    <!-- METRIC TABS -->
+    <div class="analytics-tabs">
+        <button class="analytics-tab active">Heart Rate</button>
+        <button class="analytics-tab">Blood Pressure</button>
+        <button class="analytics-tab">Temperature</button>
+        <button class="analytics-tab">Blood Glucose</button>
+        <button class="analytics-tab">Sleep</button>
+    </div>
+
+    <!-- MAIN CHART & LATEST ENTRY GRID -->
+    <div class="analytics-main-grid">
+        
+        <!-- CHART CARD -->
+        <div class="analytics-chart-card">
+            <div class="chart-card-header">
+                <div>
+                    <h3>Heart Rate</h3>
+                    <p>Beats per minute (bpm)</p>
+                </div>
+                <div class="time-range-toggle">
+                    <button class="range-btn active">7 days</button>
+                    <button class="range-btn">30 days</button>
+                </div>
+            </div>
+
+            <div class="metric-big-value">
+                <h2>72 <small>bpm</small></h2>
+                <span class="latest-recorded-badge">● Latest recorded</span>
+            </div>
+
+            <div class="baseline-info">
+                <span><i class="fa-solid fa-chart-line"></i> Personal baseline: 70-74 bpm</span>
+                <small>Based on 21 simulated entries</small>
+            </div>
+
+            <div class="chart-wrapper">
+                <canvas id="detailedHealthChart"></canvas>
+            </div>
+
+            <div class="chart-legend">
+                <span><i class="fa-solid fa-minus" style="color: #38bdf8;"></i> Manually entered</span>
+                <span><i class="fa-solid fa-minus" style="color: #64748b;"></i> Personal baseline</span>
+                <span><i class="fa-solid fa-minus" style="color: #f43f5e;"></i> Missing data</span>
+            </div>
+        </div>
+
+        <!-- LATEST ENTRY SIDE CARD -->
+        <div class="latest-entry-card">
+            <div class="entry-card-icon">
+                <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+            <h3>Latest entry</h3>
+            
+            <div class="entry-detail-row">
+                <span class="label">Recorded</span>
+                <span class="value">Today, 08:10</span>
+            </div>
+
+            <div class="entry-detail-row">
+                <span class="label">Source</span>
+                <span class="value">Manual entry</span>
+            </div>
+
+            <div class="entry-detail-row">
+                <span class="label">Context</span>
+                <span class="value">Morning health check</span>
+            </div>
+
+            <div class="entry-detail-row">
+                <span class="label">Notes</span>
+                <span class="value">No notes added</span>
+            </div>
+
+            <button class="learn-more-btn">
+                Learn about this indicator
+            </button>
+        </div>
+
+    </div>
+
+    <!-- MEASUREMENT HISTORY TABLE SECTION -->
+    <div class="measurement-history-section">
+        <h3>Measurement history</h3>
+        <p class="table-subtitle">Simulated data · most recent first</p>
+
+        <div class="history-table-wrapper">
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>DATE & TIME</th>
+                        <th>VALUE</th>
+                        <th>SOURCE</th>
+                        <th>CONTEXT</th>
+                        <th>STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Today, 08:10</td>
+                        <td>72 bpm</td>
+                        <td>Manual entry</td>
+                        <td>Morning check</td>
+                        <td><span class="status-recorded">● Recorded</span></td>
+                    </tr>
+                    <tr>
+                        <td>17 Jun, 07:43</td>
+                        <td>73 bpm</td>
+                        <td>Manual entry</td>
+                        <td>Routine check</td>
+                        <td><span class="status-recorded">● Recorded</span></td>
+                    </tr>
+                    <tr>
+                        <td>16 Jun, 07:44</td>
+                        <td>69 bpm</td>
+                        <td>Manual entry</td>
+                        <td>Morning check</td>
+                        <td><span class="status-recorded">● Recorded</span></td>
+                    </tr>
+                    <tr>
+                        <td>15 Jun, 07:45</td>
+                        <td>71 bpm</td>
+                        <td>Manual entry</td>
+                        <td>Routine check</td>
+                        <td><span class="status-recorded">● Recorded</span></td>
+                    </tr>
+                    <tr>
+                        <td>14 Jun, 07:40</td>
+                        <td>74 bpm</td>
+                        <td>Manual entry</td>
+                        <td>Morning check</td>
+                        <td><span class="status-recorded">● Recorded</span></td>
+                    </tr>
+                    <tr>
+                        <td>13 Jun, 07:47</td>
+                        <td>70 bpm</td>
+                        <td>Manual entry</td>
+                        <td>Routine check</td>
+                        <td><span class="status-recorded">● Recorded</span></td>
+                    </tr>
+                    <tr>
+                        <td>12 Jun, 07:48</td>
+                        <td>72 bpm</td>
+                        <td>Manual entry</td>
+                        <td>Morning check</td>
+                        <td><span class="status-recorded">● Recorded</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+
+<!-- HUMAN BODY MAP PAGE CONTENT -->
+<section class="page-section" id="body-map">
+
+    <!-- PAGE HEADER -->
+    <div class="body-map-header-area">
+        <span class="sub-category-tag">HUMAN BODY MAP</span>
+        <h1>Explore spaceflight health systems</h1>
+        <p>Select a body system to view general educational information and related monitoring indicators.</p>
+    </div>
+
+    <!-- EDUCATIONAL VIEW BANNER -->
+    <div class="educational-banner">
+        <i class="fa-regular fa-book-open"></i>
+        <span><strong>Educational view</strong> This information is general and is not based on your personal measurements.</span>
+    </div>
+
+    <!-- MAIN INTERACTIVE SECTION -->
+    <div class="body-map-content-grid">
+        
+        <!-- LEFT SYSTEMS LIST -->
+        <div class="systems-list-column">
+            <button class="system-item-btn active">
+                <i class="fa-solid fa-heart"></i>
+                <span>Cardiovascular</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <button class="system-item-btn">
+                <i class="fa-solid fa-bone"></i>
+                <span>Musculoskeletal</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <button class="system-item-btn">
+                <i class="fa-solid fa-brain"></i>
+                <span>Brain & behavioral health</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- CENTER BODY GRAPHIC -->
+        <div class="body-graphic-column">
+            <div class="body-silhouette">
+                <!-- تمثيل بصري لجسم الإنسان مع القلب المضيء -->
+                <div class="glowing-organ-indicator cardiovascular-highlight">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+            </div>
+            <div class="selected-system-label-tag">
+                <span>● Selected: Cardiovascular</span>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDEBAR (SELECTED SYSTEM DETAILS) -->
+        <div class="selected-system-card">
+            <div class="system-card-icon">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+            <span class="selected-system-eyebrow">SELECTED SYSTEM</span>
+            <h3>Cardiovascular</h3>
+
+            <div class="info-block">
+                <h4>Primary function</h4>
+                <p>Moves oxygen and nutrients through the body.</p>
+            </div>
+
+            <div class="info-block">
+                <h4>Relevant spaceflight factor</h4>
+                <p>Altered gravity can change fluid distribution and cardiovascular workload.</p>
+            </div>
+
+            <div class="info-block">
+                <h4>Possible effects</h4>
+                <p>Crew may notice changes in exercise tolerance or postural response.</p>
+            </div>
+
+            <div class="indicators-section">
+                <h4>Useful monitoring indicators</h4>
+                
+                <div class="indicator-link-row">
+                    <span>Heart rate</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+
+                <div class="indicator-link-row">
+                    <span>Blood pressure</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+
+                <div class="indicator-link-row">
+                    <span>Exercise recovery</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <button class="open-guide-btn">
+                <i class="fa-regular fa-book-open"></i> Open related health guide
+            </button>
+        </div>
+
+        <!-- RIGHT SIDE BUTTONS (Alternative positions if needed) -->
+        <div class="secondary-systems-column">
+            <button class="system-sub-btn">
+                <i class="fa-solid fa-shield-virus"></i>
+                <span>Immune system</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <button class="system-sub-btn">
+                <i class="fa-solid fa-utensils"></i>
+                <span>Nutrition & whole body</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ALERTS & ACTIONS PAGE CONTENT -->
+<section class="page-section" id="alerts">
+
+    <!-- PAGE HEADER -->
+    <div class="alerts-header-area">
+        <div class="alerts-title-area">
+            <span class="sub-category-tag">ALERTS & ACTIONS</span>
+            <h1>Items that need your attention</h1>
+            <p>Simulated workflow alerts explain what was flagged and the appropriate next step.</p>
+        </div>
+
+        <div class="open-items-badge">
+            <i class="fa-solid fa-circle"></i> 3 open items
+        </div>
+    </div>
+
+    <!-- ALERTS & SUMMARY GRID -->
+    <div class="alerts-main-grid">
+        
+        <!-- LEFT ALERTS LIST COLUMN -->
+        <div class="alerts-list-column">
+            
+            <!-- ALERT CARD 1: Review Needed -->
+            <div class="alert-card review-card">
+                <div class="alert-top-info">
+                    <div class="alert-icon-title">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span class="status-badge review">● Review needed</span>
+                    </div>
+                </div>
+                
+                <h3>Confirm morning heart rate entry</h3>
+                
+                <div class="alert-meta-details">
+                    <span><i class="fa-solid fa-heart-pulse"></i> 72 bpm</span>
+                    <span><i class="fa-regular fa-clock"></i> Today, 08:10</span>
+                </div>
+                
+                <p class="alert-description">This simulated entry was logged manually. Confirm it matches the measurement device before medical review.</p>
+
+                <div class="recommended-step-box">
+                    <span class="step-title">RECOMMENDED NEXT STEP</span>
+                    <p>Compare the saved value with the source device. Correct the entry if needed.</p>
+                </div>
+
+                <div class="alert-actions">
+                    <button class="btn-view-details">View details</button>
+                    <button class="btn-mark-reviewed">Mark as reviewed</button>
+                </div>
+            </div>
+
+            <!-- ALERT CARD 2: Information -->
+            <div class="alert-card info-card">
+                <div class="alert-top-info">
+                    <div class="alert-icon-title">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span class="status-badge info">● Information</span>
+                    </div>
+                </div>
+                
+                <h3>Blood glucose not scheduled</h3>
+                
+                <div class="alert-meta-details">
+                    <span><i class="fa-regular fa-calendar-xmark"></i> No entry · Today</span>
+                </div>
+                
+                <p class="alert-description">This measurement was marked not scheduled. Missing data is shown explicitly and is not treated as a result.</p>
+
+                <div class="recommended-step-box">
+                    <span class="step-title">RECOMMENDED NEXT STEP</span>
+                    <p>No action is required unless your mission medical plan indicates otherwise.</p>
+                </div>
+
+                <div class="alert-actions">
+                    <button class="btn-view-details">View details</button>
+                    <button class="btn-mark-reviewed">Mark as reviewed</button>
+                </div>
+            </div>
+
+            <!-- ALERT CARD 3: Urgent Attention / Simulation -->
+            <div class="alert-card urgent-card">
+                <div class="alert-top-info">
+                    <div class="alert-icon-title">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span class="status-badge urgent">● Urgent attention · Simulation</span>
+                    </div>
+                </div>
+                
+                <h3>Example urgent symptom workflow</h3>
+                
+                <div class="alert-meta-details">
+                    <span><i class="fa-solid fa-shield-halved"></i> Training scenario only</span>
+                </div>
+                
+                <p class="alert-description">This card demonstrates how an urgent symptom would be presented. It is not based on crew health data.</p>
+
+                <div class="recommended-step-box">
+                    <span class="step-title">RECOMMENDED NEXT STEP</span>
+                    <p>Follow the mission's established medical protocol and contact the appropriate flight medical team.</p>
+                </div>
+
+                <div class="alert-actions">
+                    <button class="btn-view-details">View details</button>
+                    <button class="btn-mark-reviewed">Mark as reviewed</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDEBAR: MEDICAL COMMUNICATION SUMMARY -->
+        <div class="medical-summary-card">
+            <div class="summary-card-icon">
+                <i class="fa-solid fa-file-medical"></i>
+            </div>
+            
+            <h3>Medical communication summary</h3>
+            <p>Compile selected demo readings, symptoms, and timestamps for a concise review.</p>
+
+            <div class="summary-checkboxes">
+                <label class="checkbox-row">
+                    <input type="checkbox" checked> Latest measurements
+                </label>
+                <label class="checkbox-row">
+                    <input type="checkbox" checked> Reported symptoms
+                </label>
+                <label class="checkbox-row">
+                    <input type="checkbox" checked> Open alerts
+                </label>
+                <label class="checkbox-row">
+                    <input type="checkbox"> Assessment notes
+                </label>
+            </div>
+
+            <button class="prepare-summary-btn">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Prepare summary
+            </button>
+
+            <div class="summary-footer-note">
+                <p>This prototype does not send data or contact a medical team.</p>
+                <small>Not a substitute for professional medical evaluation or official mission procedures.</small>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SLEEP & MENTAL WELLNESS PAGE CONTENT -->
+<section class="page-section" id="wellness">
+
+    <!-- PAGE HEADER & ACTION BUTTON -->
+    <div class="wellness-header-area">
+        <div class="wellness-title-area">
+            <span class="sub-category-tag">SLEEP & MENTAL WELLNESS</span>
+            <h1>Support recovery and resilience</h1>
+            <p>Optional, private check-ins to help you notice routines and changes over time.</p>
+        </div>
+
+        <button class="add-checkin-btn">
+            <i class="fa-solid fa-plus"></i> Add check-in
+        </button>
+    </div>
+
+    <!-- TOP METRICS CARDS ROW -->
+    <div class="wellness-metrics-row">
+        
+        <!-- Card 1: Last Sleep -->
+        <div class="metric-card">
+            <div class="metric-card-icon">
+                <i class="fa-solid fa-moon"></i>
+            </div>
+            <span class="metric-label">Last sleep</span>
+            <h2>7.4 <small>hours</small></h2>
+            <span class="metric-status logged">● Logged today</span>
+        </div>
+
+        <!-- Card 2: Sleep Quality -->
+        <div class="metric-card">
+            <div class="metric-card-icon">
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <span class="metric-label">Sleep quality</span>
+            <h2>Good</h2>
+            <span class="metric-status">● Self-reported</span>
+        </div>
+
+        <!-- Card 3: Current Mood -->
+        <div class="metric-card">
+            <div class="metric-card-icon">
+                <i class="fa-solid fa-face-smile"></i>
+            </div>
+            <span class="metric-label">Current mood</span>
+            <h2>Steady</h2>
+            <span class="metric-status">● No diagnosis</span>
+        </div>
+
+        <!-- Card 4: Stress -->
+        <div class="metric-card">
+            <div class="metric-card-icon">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+            <span class="metric-label">Stress</span>
+            <h2>Low</h2>
+            <span class="metric-status">● Self-reported</span>
+        </div>
+
+    </div>
+
+    <!-- MIDDLE SECTION: TRENDS & BREATHING PAUSE GRID -->
+    <div class="wellness-middle-grid">
+        
+        <!-- Seven-day Wellbeing Trend Card -->
+        <div class="wellbeing-trend-card">
+            <div class="trend-card-header">
+                <div>
+                    <h3>Seven-day wellbeing trend</h3>
+                    <p>Self-reported demo data</p>
+                </div>
+                <div class="trend-tabs">
+                    <button class="trend-tab active">Sleep</button>
+                    <button class="trend-tab">Mood</button>
+                    <button class="trend-tab">Stress</button>
+                </div>
+            </div>
+
+            <div class="trend-big-value">
+                <h2>7.4 <small>hours · last sleep period</small></h2>
+            </div>
+
+            <div class="chart-wrapper">
+                <canvas id="wellnessTrendChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Optional Reset: Two-minute breathing pause Card -->
+        <div class="breathing-card">
+            <span class="card-eyebrow">OPTIONAL RESET</span>
+            <h3>Two-minute breathing pause</h3>
+            <p>A simple paced exercise to support a brief transition between mission tasks.</p>
+
+            <div class="breathing-icon-container">
+                <i class="fa-solid fa-moon"></i>
+            </div>
+
+            <button class="begin-exercise-btn">
+                <i class="fa-solid fa-play"></i> Begin exercise
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<!-- SPACE HEALTH GUIDE PAGE CONTENT -->
+<section class="page-section" id="guide">
+
+    <!-- PAGE HEADER -->
+    <div class="guide-header-area">
+        <span class="sub-category-tag">SPACE HEALTH GUIDE</span>
+        <h1>Mission health library</h1>
+        <p>Concise, sourced education about human health and the spaceflight environment.</p>
+    </div>
+
+    <!-- SEARCH BAR & FILTER BUTTONS -->
+    <div class="guide-search-filter-section">
+        <div class="guide-search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search hazards, body systems, or indicators">
+        </div>
+
+        <div class="guide-filter-tabs">
+            <button class="filter-btn active">All topics</button>
+            <button class="filter-btn">Environment</button>
+            <button class="filter-btn">Behavioral health</button>
+            <button class="filter-btn">Physical health</button>
+        </div>
+    </div>
+
+    <!-- FOUNDATIONAL READING BANNER CARD -->
+    <div class="foundational-reading-card">
+        <div class="foundational-content">
+            <span class="foundational-tag">FOUNDATIONAL READING</span>
+            <h2>Five hazards of human spaceflight</h2>
+            <p>Explore the major categories used by NASA's Human Research Program to communicate spaceflight health risks.</p>
+        </div>
+        <div class="foundational-icon">
+            <i class="fa-solid fa-book-open"></i>
+        </div>
+    </div>
+
+    <!-- GUIDE TOPICS GRID -->
+    <div class="guide-topics-grid">
+        
+        <!-- Topic 1: Space Radiation -->
+        <div class="guide-topic-card">
+            <div class="topic-card-top">
+                <div class="topic-icon-wrapper environment">
+                    <i class="fa-solid fa-radiation"></i>
+                </div>
+                <span class="topic-category-tag">ENVIRONMENT</span>
+            </div>
+            <h3>Space Radiation</h3>
+            <p>How ionizing radiation beyond Earth's protection may affect biological systems.</p>
+            <div class="topic-tags-row">
+                <span class="mini-tag">radiation</span>
+                <span class="mini-tag">immune</span>
+            </div>
+            <a href="#" class="read-overview-link">Read overview <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+
+        <!-- Topic 2: Isolation & Confinement -->
+        <div class="guide-topic-card">
+            <div class="topic-card-top">
+                <div class="topic-icon-wrapper behavioral">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <span class="topic-category-tag">BEHAVIORAL HEALTH</span>
+            </div>
+            <h3>Isolation & Confinement</h3>
+            <p>How long-duration isolation, workload, and limited privacy can influence crew wellbeing.</p>
+            <div class="topic-tags-row">
+                <span class="mini-tag">mood</span>
+                <span class="mini-tag">sleep</span>
+            </div>
+            <a href="#" class="read-overview-link">Read overview <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+
+        <!-- Topic 3: Distance from Earth -->
+        <div class="guide-topic-card">
+            <div class="topic-card-top">
+                <div class="topic-icon-wrapper operations">
+                    <i class="fa-solid fa-signal"></i>
+                </div>
+                <span class="topic-category-tag">MISSION OPERATIONS</span>
+            </div>
+            <h3>Distance from Earth</h3>
+            <p>How communication delays and autonomy shape health decisions on distant missions.</p>
+            <div class="topic-tags-row">
+                <span class="mini-tag">communication</span>
+                <span class="mini-tag">protocol</span>
+            </div>
+            <a href="#" class="read-overview-link">Read overview <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+
+        <!-- Topic 4: Gravity Fields -->
+        <div class="guide-topic-card">
+            <div class="topic-card-top">
+                <div class="topic-icon-wrapper physical">
+                    <i class="fa-solid fa-person-falling"></i>
+                </div>
+                <span class="topic-category-tag">PHYSICAL HEALTH</span>
+            </div>
+            <h3>Gravity Fields</h3>
+            <p>How changing gravity environments can affect bone, muscle, balance, and circulation.</p>
+            <div class="topic-tags-row">
+                <span class="mini-tag">bone</span>
+                <span class="mini-tag">heart</span>
+            </div>
+            <a href="#" class="read-overview-link">Read overview <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+
+        <!-- Topic 5: Hostile Closed Environments -->
+        <div class="guide-topic-card">
+            <div class="topic-card-top">
+                <div class="topic-icon-wrapper environment">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <span class="topic-category-tag">ENVIRONMENT</span>
+            </div>
+            <h3>Hostile Closed Environments</h3>
+            <p>How atmosphere, microbes, noise, and constrained habitat systems interact with health.</p>
+            <div class="topic-tags-row">
+                <span class="mini-tag">immune</span>
+                <span class="mini-tag">environment</span>
+            </div>
+            <a href="#" class="read-overview-link">Read overview <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+
+        <!-- Topic 6: Sleep & Circadian Rhythm -->
+        <div class="guide-topic-card">
+            <div class="topic-card-top">
+                <div class="topic-icon-wrapper behavioral">
+                    <i class="fa-solid fa-moon"></i>
+                </div>
+                <span class="topic-category-tag">BEHAVIORAL HEALTH</span>
+            </div>
+            <h3>Sleep & Circadian Rhythm</h3>
+            <p>Practical context for sleep timing, light exposure, and mission schedules.</p>
+            <div class="topic-tags-row">
+                <span class="mini-tag">sleep</span>
+                <span class="mini-tag">routine</span>
+            </div>
+            <a href="#" class="read-overview-link">Read overview <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- MISSION ROUTINE PAGE CONTENT -->
+<section class="page-section" id="routine">
+
+    <!-- PAGE HEADER & ACTION BUTTON -->
+    <div class="routine-header-area">
+        <div class="routine-title-area">
+            <span class="sub-category-tag">MISSION ROUTINE</span>
+            <h1>Today's health plan</h1>
+            <p>Tuesday, Mission Day 084 · visible in-app reminders for this prototype.</p>
+        </div>
+
+        <button class="add-reminder-btn">
+            <i class="fa-solid fa-plus"></i> Add reminder
+        </button>
+    </div>
+
+    <!-- DAILY COMPLETION PROGRESS CARD -->
+    <div class="daily-completion-card">
+        <div class="completion-left-side">
+            <div class="progress-ring-wrapper">
+                <!-- تمثيل الدائرة البرمجة %40 -->
+                <div class="progress-ring-circle">
+                    <span>40%</span>
+                </div>
+            </div>
+            
+            <div class="completion-text-info">
+                <span class="completion-eyebrow">DAILY COMPLETION</span>
+                <h2>2 of 5 tasks complete</h2>
+                <p>Next scheduled: Hydration check at 13:30</p>
+            </div>
+        </div>
+
+        <div class="completion-stats-right">
+            <div class="stat-box">
+                <span class="stat-number">2</span>
+                <span class="stat-label">Completed</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">3</span>
+                <span class="stat-label">Upcoming</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">0</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+                <!-- SETTINGS PAGE CONTENT -->
+<section class="page-section" id="settings">
+
+    <!-- PAGE HEADER -->
+    <div class="settings-header-area">
+        <span class="sub-category-tag">SETTINGS & PROFILE</span>
+        <h1>Mission preferences</h1>
+        <p>Manage local prototype settings, accessibility, and illustrative device status.</p>
+    </div>
+
+    <!-- PROFILE CARD -->
+    <div class="settings-profile-card">
+        <div class="profile-info-left">
+            <div class="profile-avatar-large">EC</div>
+            <div class="profile-text-details">
+                <h3>Commander Elena Cruz</h3>
+                <p>Flight Engineer · Crew 04</p>
+                <span class="mission-badge">Lunar Exploration Mission</span>
+            </div>
+        </div>
+        <button class="edit-profile-btn">Edit profile</button>
+    </div>
+<!-- </div> -->
+    <!-- SETTINGS GRID CONTAINER -->
+    <div class="settings-grid-container">
+        
+        <!-- ROW 1: Measurement Preferences & Accessibility -->
+        <div class="settings-row-grid">
+            
+            <!-- Measurement Preferences Card -->
+            <div class="settings-card">
+                <h3>Measurement preferences</h3>
+                <p class="card-desc">Changes apply to visible prototype values.</p>
+
+                <div class="setting-item-group">
+                    <div class="setting-label-text">
+                        <strong>Unit system</strong>
+                        <span>Choose how measurements are displayed. Values are never silently converted.</span>
+                    </div>
+                    <div class="setting-control">
+                        <select class="standard-select">
+                            <option>Mission standard</option>
+                            <option>Metric</option>
+                            <option>Imperial</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accessibility Card -->
+            <div class="settings-card">
+                <h3>Accessibility</h3>
+                <p class="card-desc">Adjust the interface for your needs.</p>
+
+                <div class="setting-toggle-row">
+                    <div class="setting-label-text">
+                        <strong>Larger interface text</strong>
+                        <span>Increase supporting and body text size.</span>
+                    </div>
+                    <label class="switch-toggle">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-toggle-row">
+                    <div class="setting-label-text">
+                        <strong>Reduce motion</strong>
+                        <span>Minimize non-essential transitions.</span>
+                    </div>
+                    <label class="switch-toggle">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROW 2: Notifications & Data & Connectivity -->
+        <div class="settings-row-grid">
+            
+            <!-- Notifications Card -->
+            <div class="settings-card">
+                <h3>Notifications</h3>
+                <p class="card-desc">Visible reminders within this prototype only.</p>
+
+                <div class="setting-toggle-row">
+                    <div class="setting-label-text">
+                        <strong>Routine reminders</strong>
+                        <span>Show scheduled task reminders while SpaceCare is open.</span>
+                    </div>
+                    <label class="switch-toggle">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-toggle-row">
+                    <div class="setting-label-text">
+                        <strong>Review alerts</strong>
+                        <span>Show a badge for new simulated review items.</span>
+                    </div>
+                    <label class="switch-toggle">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Data & Connectivity Card -->
+            <div class="settings-card">
+                <h3>Data & connectivity</h3>
+                <p class="card-desc">No real medical transmission is configured
+
+                </p>
+            </div>
+        </div>
+    </div>
+    </section>
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
